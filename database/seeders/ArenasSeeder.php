@@ -21,7 +21,9 @@ class ArenasSeeder extends Seeder
             'arena_rating' => 4.7,
             'number_of_fields'=> 5,
             'arena_price'=> 50000,
-            // 'category_id'=> 1,
+            'category_id'=> 1,
+            'banner_flag'=> 1,
+            'top_arenas_flag'=> 0,
         ]);
 
         Arenas::insert([
@@ -32,7 +34,9 @@ class ArenasSeeder extends Seeder
             'arena_rating' => 5,
             'number_of_fields'=> 2,
             'arena_price'=> 100000,
-            // 'category_id'=> 2,
+            'category_id'=> 2,
+            'banner_flag'=> 0,
+            'top_arenas_flag'=> 1,
         ]);
 
         Arenas::insert([
@@ -43,7 +47,74 @@ class ArenasSeeder extends Seeder
             'arena_rating' => 4.8,
             'number_of_fields'=> 1,
             'arena_price'=> 90000,
-            // 'category_id'=> 2,
+            'category_id'=> 2,
+            'banner_flag'=> 0,
+            'top_arenas_flag'=> 1,
+        ]);
+
+        Arenas::insert([
+            'arena_type'=> 'Futsal',
+            'arena_name'=> 'Lapangan',
+            'arena_address'=> 'Jl. Hadiah blok A',
+            'arena_phone'=> '0812 3456 7890',
+            'arena_rating' => 4.6,
+            'number_of_fields'=> 2,
+            'arena_price'=> 80000,
+            'category_id'=> 2,
+            'banner_flag'=> 0,
+            'top_arenas_flag'=> 0,
+        ]);
+
+        Arenas::insert([
+            'arena_type'=> 'Badminton',
+            'arena_name'=> 'Dutamas',
+            'arena_address'=> 'Jl. A',
+            'arena_phone'=> '0812 3456 7890',
+            'arena_rating' => 4.9,
+            'number_of_fields'=> 5,
+            'arena_price'=> 60000,
+            'category_id'=> 1,
+            'banner_flag'=> 0,
+            'top_arenas_flag'=> 1,
+        ]);
+
+        Arenas::insert([
+            'arena_type'=> 'Badminton',
+            'arena_name'=> 'Talenta',
+            'arena_address'=> 'Jl. B',
+            'arena_phone'=> '0812 3456 7890',
+            'arena_rating' => 4.7,
+            'number_of_fields'=> 3,
+            'arena_price'=> 55000,
+            'category_id'=> 1,
+            'banner_flag'=> 1,
+            'top_arenas_flag'=> 0,
+        ]);
+
+        Arenas::insert([
+            'arena_type'=> 'Badminton',
+            'arena_name'=> 'Garuda Badminton Hall',
+            'arena_address'=> 'Jl. C',
+            'arena_phone'=> '0812 3456 7890',
+            'arena_rating' => 4.6,
+            'number_of_fields'=> 6,
+            'arena_price'=> 85000,
+            'category_id'=> 1,
+            'banner_flag'=> 0,
+            'top_arenas_flag'=> 1,
+        ]);
+
+        Arenas::insert([
+            'arena_type'=> 'Badminton',
+            'arena_name'=> 'Tunas Bugar',
+            'arena_address'=> 'Jl. D',
+            'arena_phone'=> '0812 3456 7890',
+            'arena_rating' => 4.7,
+            'number_of_fields'=> 5,
+            'arena_price'=> 60000,
+            'category_id'=> 1,
+            'banner_flag'=> 0,
+            'top_arenas_flag'=> 0,
         ]);
     }
 }

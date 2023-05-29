@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('arenas', function (Blueprint $table) {
             $table->id('arena_id');
-            // $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('category_id');
             $table->string('arena_type');
             $table->string('arena_name');
             $table->string('arena_address');
@@ -21,6 +21,8 @@ return new class extends Migration
             $table->float('arena_rating');
             $table->integer('number_of_fields');
             $table->integer('arena_price');
+            $table->integer('banner_flag')->default(0);
+            $table->integer('top_arenas_flag')->default(0);
             $table->timestamps();
         });
 
