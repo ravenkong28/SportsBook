@@ -13,7 +13,7 @@
             </ul>
         </div>
         <div class="flex-shrink-0">
-            <img src="{{ asset('Images/home.png') }}" style="width: 400px; height: auto;">
+            <img src="{{ asset('Images/Home.png') }}" style="width: 400px; height: auto;">
         </div>
 
     </div>

@@ -35,8 +35,8 @@
                     </li>
                 </ul>
                 <div class="d-flex">
-                    <form class="me-2 d-flex align-items-center" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <form action="/home" class="me-2 d-flex align-items-center" role="search">
+                        <input class="form-control me-2" type="text" placeholder="Search" name="Search">
                         <button class="btn btn-outline-success fw-bold" style="background-color: rgb(255, 153, 0); color: black" type="submit">Search</button>
                     </form>
                     <ul class="nav">
@@ -44,7 +44,10 @@
                             <a class="nav-link dropdown-toggle fw-bold fs-5" style="color: black; align-items: center;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Profile</a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item fw-bold" href="/my-account">My Account</a></li>
-                                <li><a class="dropdown-item fw-bold" href="/">Log Out</a></li>
+                                <form action="/logout" method="post">
+                                    @csrf
+                                    <button type ="submit" class="dropdown-item fw-bold">Log Out</button>
+                                </form>
                             </ul>
                         </li>
                     </ul>

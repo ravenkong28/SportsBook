@@ -2,8 +2,13 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+// use WithoutModelEvents;
+use App\Models\Arenas;
+use App\Models\Category;
+use App\Models\Booking;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,5 +23,155 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+        
+        // $this->call([
+        //     UserSeeder::class,
+        //     BookingSeeder::class,
+        //     Category::class,
+        //     ArenasSeeder::class
+        // ]);
+        
+        Arenas::insert([
+            'arena_type'=> 'Badminton',
+            'arena_name'=> 'Patra',
+            'arena_address'=> 'Jl. Haji Musirin',
+            'arena_phone'=> '0812 3456 7890',
+            'arena_rating' => 4.7,
+            'number_of_fields'=> 5,
+            'arena_price'=> 50000,
+            'category_id'=> 1,
+            'banner_flag'=> 1,
+            'top_arenas_flag'=> 0,
+        ]);
+
+        Arenas::insert([
+            'arena_type'=> 'Futsal',
+            'arena_name'=> 'Orion',
+            'arena_address'=> 'Jl. Kebon Jeruk no.10',
+            'arena_phone'=> '0812 3456 7890',
+            'arena_rating' => 5,
+            'number_of_fields'=> 2,
+            'arena_price'=> 100000,
+            'category_id'=> 2,
+            'banner_flag'=> 1,
+            'top_arenas_flag'=> 1,
+        ]);
+
+        Arenas::insert([
+            'arena_type'=> 'Futsal',
+            'arena_name'=> 'Cometa',
+            'arena_address'=> 'Jl. Hadiah blok A',
+            'arena_phone'=> '0812 3456 7890',
+            'arena_rating' => 4.8,
+            'number_of_fields'=> 1,
+            'arena_price'=> 90000,
+            'category_id'=> 2,
+            'banner_flag'=> 0,
+            'top_arenas_flag'=> 1,
+        ]);
+
+        Arenas::insert([
+            'arena_type'=> 'Futsal',
+            'arena_name'=> 'Lapangan',
+            'arena_address'=> 'Jl. Hadiah blok A',
+            'arena_phone'=> '0812 3456 7890',
+            'arena_rating' => 4.6,
+            'number_of_fields'=> 2,
+            'arena_price'=> 80000,
+            'category_id'=> 2,
+            'banner_flag'=> 0,
+            'top_arenas_flag'=> 0,
+        ]);
+
+        Arenas::insert([
+            'arena_type'=> 'Badminton',
+            'arena_name'=> 'Dutamas',
+            'arena_address'=> 'Jl. A',
+            'arena_phone'=> '0812 3456 7890',
+            'arena_rating' => 4.9,
+            'number_of_fields'=> 5,
+            'arena_price'=> 60000,
+            'category_id'=> 1,
+            'banner_flag'=> 0,
+            'top_arenas_flag'=> 1,
+        ]);
+
+        Arenas::insert([
+            'arena_type'=> 'Badminton',
+            'arena_name'=> 'Talenta',
+            'arena_address'=> 'Jl. B',
+            'arena_phone'=> '0812 3456 7890',
+            'arena_rating' => 4.7,
+            'number_of_fields'=> 3,
+            'arena_price'=> 55000,
+            'category_id'=> 1,
+            'banner_flag'=> 1,
+            'top_arenas_flag'=> 0,
+        ]);
+
+        Arenas::insert([
+            'arena_type'=> 'Badminton',
+            'arena_name'=> 'Garuda Badminton Hall',
+            'arena_address'=> 'Jl. C',
+            'arena_phone'=> '0812 3456 7890',
+            'arena_rating' => 4.6,
+            'number_of_fields'=> 6,
+            'arena_price'=> 85000,
+            'category_id'=> 1,
+            'banner_flag'=> 0,
+            'top_arenas_flag'=> 1,
+        ]);
+
+        Arenas::insert([
+            'arena_type'=> 'Badminton',
+            'arena_name'=> 'Tunas Bugar',
+            'arena_address'=> 'Jl. D',
+            'arena_phone'=> '0812 3456 7890',
+            'arena_rating' => 4.7,
+            'number_of_fields'=> 5,
+            'arena_price'=> 60000,
+            'category_id'=> 1,
+            'banner_flag'=> 0,
+            'top_arenas_flag'=> 0,
+        ]);
+
+        // Booking::insert([
+        //     'booking_date' => '27/05/2023',
+        //     'booking_time' => '14.00',
+        //     'number_of_fields_booked' => 2,
+        //     'total_price' => 150000,
+        // ]);
+
+        Category::insert([
+            'category_name' => 'Badminton',
+        ]);
+        Category::insert([
+            'category_name' => 'Futsal',
+        ]);
+        Category::insert([
+            'category_name' => 'Basketball',
+        ]);
+
+
+        User::insert([
+            'name' => 'Amadeo Marvell',
+            'email'=> 'amadeomarvell@gmail.com',
+            'password'=> bcrypt('amadeomarvell'),
+            'phone'=> '0812-3456-7890',
+            'age' => '22',
+            'address' => 'Jl. Jelambar Baru V',
+            'region' => 'Jakarta',
+            'is_admin' => 0,
+        ]);
+        User::insert([
+            'name' => 'Admin',
+            'email'=> 'admin@gmail.com',
+            'password'=> bcrypt('admin123'),
+            'phone'=> '0812-3456-7890',
+            'age' => '100',
+            'address' => 'Jl. Laravel no 8',
+            'region' => 'Jakarta',
+            'is_admin' => 1,
+        ]);
     }
 }

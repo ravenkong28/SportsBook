@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id('booking_id');
-            $table->unsignedBigInteger('arena_id');
-            $table->string('arena_name');
+            // $table->foreignId('arena_id');
+            $table->foreignId('user_id');
             $table->date('booking_date');
-            $table->time('booking_time');
-            $table->integer('number_of_fields_booked');
+            $table->boolean('status')->default(false);
+            // $table->time('booking_time_start');
+            // $table->time('booking_time_end');
+            // $table->integer('qty_time');
             $table->integer('total_price');
             $table->timestamps();
         });

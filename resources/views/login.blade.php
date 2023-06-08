@@ -51,29 +51,48 @@
 <body>
     <div class="container">
         <div class="form-container">
-            <form action="/home" method="POST">
+            @if(session()->has('success'))
+                <div class="alert alert-success alert-dismissible fade show" role = "alert">
+                    {{ session('success') }}
+                    <button type = "button" class="btn-close" data-bs-dismiss="alert" arta-label="Close"></button>
+                </div>
+            @endif
+
+            @if(session()->has('loginError'))
+                <div class="alert alert-danger alert-dismissible fade show" role = "alert">
+                    {{ session('loginError') }}
+                    <button type = "button" class="btn-close" data-bs-dismiss="alert" arta-label="Close">
+                    </button>
+                </div>
+            @endif
+
+            <form action="/login" method="post">
                 @csrf
                 <div class="d-flex mt justify-content-center align-items-center" style="padding: 20px">
                     <h3>Login</h3>
                 </div>
                 <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label @error('user_name') is-invalid @enderror">Your Email</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                  <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                    <label for="email" autofocus required>Your Email</label>
+                    <input type="email" name = "email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="name@example.com" value ="{{ old('email') }}">
+                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                    @error('email')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
                 <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label @error('user_password') is-invalid @enderror">Password</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1">
+                    <label for="exampleInputPassword1" class="form-label @error('password') is-invalid @enderror" placeholder="Password">Password</label>
+                    <input type="password" name="password" class="form-control" id="exampleInputPassword1">
                 </div>
                 <div class="form-container-2">
                     <div class="mb-3 form-check">
                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
                         <label class="form-check-label" for="exampleCheck1">Remember me</label>
-                        <small>New here?<a href="/login" class="card-link">Sign up here!</a></small>
+                        <small>New here?<a href="/register" class="card-link">Sign up here!</a></small>
                     </div>
                 </div>
-
-                <button type="submit" class="btn btn-primary">Login</button>
+                <input type="submit" value="Log In" class="btn btn-primary">
             </form>
         </div>
     </div>
