@@ -53,4 +53,5 @@ Route::put('/my-bookings/{id}', [BookingController::class, 'finalizebooking'])->
 Route::delete('/my-bookings/{id}', [BookingController::class, 'deletebooking'])->name('deletebooking')->middleware('auth');
 
 Route::get('/my-transaction', [BookingController::class, 'transaction'])->name('transaction')->middleware('auth');
- 
+Route::get('my-transaction/{id}/pay', [BookingController::class, 'confirmpayment'])->name('confirmpayment')->middleware('auth');
+Route::put('/my-transaction/{id}', [BookingController::class, 'donepayment'])->name('donepayment')->middleware('auth');

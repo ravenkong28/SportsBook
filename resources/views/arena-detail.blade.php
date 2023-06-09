@@ -83,10 +83,8 @@
                 </div>
                 <ul style="list-style: none;">
                     <li class="list-group-item; fs-4" style="margin-bottom: 10px; margin-top: 10px"><b>Price:</b></li>
-                    <li class="list-group-item"><b>Weekdays (Monday-Friday)</li>
+                    <li class="list-group-item"><b>Price Monday-Sunday, 09:00 AM - 09:00 PM</li>
                     <li class="list-group-item" style="color: rgb(153, 0, 0)"><b>Rp {{ $arena->arena_price }},-</li>
-                    <li class="list-group-item"><b>Weekends (Saturday-Sunday)</li>
-                    <li class="list-group-item" style="color: rgb(153, 0, 0)"><b>Rp {{ $arena->arena_price + 40000}},-</b></li>
                     <li class="list-group-item"><b>Jumlah Lapangan : {{ $arena->number_of_fields }}</b></li>
                 </ul>
                 {{-- <div class="d-flex mt-3 justify-content-center align-items-center" style="background-color: rgb(243, 210, 61)">

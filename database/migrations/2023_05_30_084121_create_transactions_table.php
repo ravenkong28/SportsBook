@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('transactions', function (Blueprint $table) {
+            // $table->uuid('id')->primary();
             $table->id();
             $table->foreignId('user_id');
             $table->foreignId('arena_id');
@@ -21,6 +22,7 @@ return new class extends Migration
             $table->string('booking_time_start');
             // $table->time('booking_time_end');
             $table->integer('total_price');
+            $table->boolean('status_payment')->default(0);
             $table->timestamps();
         });
     }

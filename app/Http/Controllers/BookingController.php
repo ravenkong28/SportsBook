@@ -7,6 +7,7 @@ use App\Models\Booking;
 use App\Models\Arenas;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class BookingController extends Controller
 {   
@@ -74,6 +75,7 @@ class BookingController extends Controller
             $arena = Arenas::where('arena_id', $booking->arena_id)->first();
             // dd($arena);
             $validateData['total_price'] = $arena->arena_price * $request->qty_time;
+            // $validateData['id'] = Str::uuid('32')->toString();
             
             // dd($validateData);
 
@@ -86,11 +88,17 @@ class BookingController extends Controller
         // dd($booking);        
     }
 
+    // protected static function booted(): void {
+    //     Str::createUuidsNormally(function (Transaction $transaction){
+    //         $transaction->id = Str::uuid()->toString();
+    //     });
+    // }
+
+
 
 
     public function deletebooking($id){
         Booking::destroy($id);
-        // dd($booking);
 
         return redirect('home')->with('success', 'Book arena has been deleted!');
     }
@@ -111,5 +119,23 @@ class BookingController extends Controller
 
         // dd($booking);
         
+    }
+
+    public function confirmpayment($id){
+        // $user = auth()->user->id;
+        $transaction = Transaction::find($id);
+        // dd($transaction);
+        return view('payment',[
+            'transaction' => $transaction
+        ]);
+    }
+
+    public function donepayment($id){
+        $transaction = Transaction::find($id);
+
+        $transaction->status_payment = 1;
+        $transaction->save();
+
+        return redirect('/my-transaction')->with('success', 'Payment Successfull!! Enjoy');
     }
 }

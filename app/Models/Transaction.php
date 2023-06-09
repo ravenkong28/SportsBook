@@ -9,6 +9,7 @@ class Transaction extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+    public $incrementing = false;
 
 
     public function user(){

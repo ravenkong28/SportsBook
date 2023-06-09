@@ -9,7 +9,7 @@ class Arenas extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'arena_id';
     protected $guarded = ['id'];
 
     //Di controller php jadi ->filter() untuk searching
@@ -26,7 +26,7 @@ class Arenas extends Model
     }
 
     public function category(){
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class, "category_id");
     }
 
     public function booking(){
