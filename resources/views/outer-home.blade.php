@@ -28,8 +28,8 @@
         }
 
         .img-container img {
-            width: 100%;
-            height: 100%;
+            width: 250%;
+            height: 250%;
             object-fit: contain;
         }
 
@@ -50,11 +50,11 @@
 <body style="background-image: url('Images/bg.png'); background-size: cover; background-repeat: no-repeat;">
     <div class="container">
         <div class="img-container">
-            <img src="{{ asset('Images/Home.png') }}">
+            <img src="{{ asset('Images/home.png') }}">
+            <div class="text-overlay justify-content-center align-items-center fw-bold fs-1" style="color: black">
+                Welcome to SportsBook!!
+            </div>
         </div>
-        <h2 class="text-overlay">
-            Welcome to SportsBook!!
-        </h2>
     </div>
 </body>
 @endsection
