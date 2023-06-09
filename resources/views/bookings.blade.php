@@ -70,16 +70,16 @@
         <div class="container">
             {{-- @foreach ($arenas as $arena) --}}
                 <div class="img-container">
-                    {{-- <img style="width: 100%; height: 200px;" src="{{ asset('Images/'.$arena->arena_name.' '.$arena->arena_type.'.jpg') }}">--}}
-                    <img style="width: 500px; height: 400px;" src="{{ asset('Images/Patra Badminton.jpg') }}">
+                    <img style="width: 100%; height: 200px;" src="{{ asset('Images/'.$arena->arena_name.' '.$arena->arena_type.'.jpg') }}">
+                    {{-- <img style="width: 500px; height: 400px;" src="{{ asset('Images/Patra Badminton.jpg') }}"> --}}
                 </div>
                 <div class="text-container">
                     <ul style="list-style: none;">
-                        <li class="list-group-item; fs-2"><b>Users : Admin</b></li> 
-                        <li class="list-group-item; fs-2"><b>Arena : Patra</b></li>
-                        <li class="list-group-item"><b>Jalan : Jl. Haji Musirin</b></li>
-                        <li class="list-group-item" style="color: rgb(146, 0, 0)"><b>0812 3456 7890</b></li>
-                        <li class="list-group-item"><b>Rating: 4.7/5</b></li>
+                        <li class="list-group-item; fs-2"><b>Users : {{ $user->name }}</b></li> 
+                        <li class="list-group-item; fs-2"><b>Arena : {{ $arena->arena_name }}</b></li>
+                        <li class="list-group-item"><b>Jalan Arena : {{ $arena->arena_address }}</b></li>
+                        <li class="list-group-item" style="color: rgb(146, 0, 0)"><b>Notelp Arena : {{ $arena->arena_phone }}</b></li>
+                        <li class="list-group-item"><b>Rating: {{ $arena->arena_rating }}/5</b></li>
                         <br>
                         <br>
                         <li class="list-group-item"><b>Date: 06/28/2023</b></li>

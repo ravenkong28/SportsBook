@@ -5,124 +5,128 @@
 @section('context')
 
 <style>
-    .container {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: left;
+    .button-link {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #f3d427;
+        color: #000000;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: all 0.3s ease-in-out;
+        margin-top: 20px;
     }
 
-    .img-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 40px;
-            background-color: #ececec;
-            border-radius: 20px 20px;
-            margin-top: 30px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
+    .button-link:hover {
+        background-color: #efff91;
+    }
+</style>
+<style>
+    .card-link {
+        color: rgb(233, 128, 29);
+        text-decoration: none;
+    }
 
-        .text-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 40px;
-            border-radius: 20px 20px;
-            margin-top: 30px;
-            margin-left: 30px;
-        }
-
-        .button-link {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #f3d427;
-            color: #000000;
-            text-decoration: none;
-            border-radius: 4px;
-            transition: all 0.3s ease-in-out;
-            margin-top: 20px;
-            margin-right: 10px;
-            justify-content: center;
-        }
-
-        .button-link:hover {
-            background-color: #efff91;
-        }
-
-        .form-container {
-            margin-top: 20px;
-            margin-left: 50px;
-        }
-
-        .text-container-3 {
-            margin-top: 30px;
-            margin-left: 50px;
-        }
-
-
+    .card-link:hover {
+        color: rgb(255, 210, 113);
+        text-decoration: underline;
+    }
 </style>
 
 <body>
-    <div>
-        @foreach ($arenas as $arena)
-        <div class="container">
-                <div class="img-container">
-                    <img style="width: 500px; height: 400px;" src="{{ asset('Images/'.$arena->arena_name.' '.$arena->arena_type.'.jpg') }}">
+    <div class= "p-3">
+        <div class="row justify-content-left align-items-left" style="padding: 20px; border-radius: 20px 20px;">
+            <div class="card border-dark mb-3" style="width: 100%; height: auto">
+                <div class="row g-0 justify-content-center align-items-center">
+                <div class="col-md-4">
+                    <img class="img-fluid rounded-start justify-content-center align-items-center" style="width: 100%; height: 180px;" src="{{ asset('Images/'.$arena->arena_name.' '.$arena->arena_type.'.jpg') }}">
                 </div>
-                <div class="text-container">
-                    <ul style="list-style: none;">
-                        <li class="list-group-item; fs-2"><b>User : {{ $name }}</b></li> 
-                        <li class="list-group-item; fs-2"><b>Arena : {{ $arena->arena_name }} {{ $arena->arena_type }}</b></li>
-                        <li class="list-group-item"><b>Jalan : {{ $arena->arena_address }}</b></li>
-                        <li class="list-group-item" style="color: rgb(146, 0, 0)"><b>{{ $arena->arena_phone }}</b></li>
-                        <li class="list-group-item"><b>Rating: {{ $arena->arena_rating }}/5</b></li>
-                    </ul>
+                <div class="col-md-8">
+                        <div class="card-body">
+                            <ul style="list-style: none;">
+                                <li class="list-group-item; fs-2"><b>{{ $arena->arena_name }} {{ $arena->arena_type }}</b></li>
+                                <li class="list-group-item" style="margin-top: 20px;"><b>{{ $arena->arena_address }}</b></li>
+                                <li class="list-group-item" style="color: rgb(146, 0, 0)"><b>{{ $arena->arena_phone }}</b></li>
+                                <li class="list-group-item"><b>Rating: {{ $arena->arena_rating }}/5</b></li>
+                                <li class="list-group-item"><b>Price per hour: Rp. {{ $booking->arena_price }}</b></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-        </div>
-        <div class="container-2">
-            <div class="text-container-2">
-                <div class="d-flex mt-3 justify-content-center align-items-center" style="background-color: rgb(243, 210, 61)">
-                    <h3>Book Here !!</h3>
-                </div>
-            </div>
-            <div class="row">
-                <form class="/booking/{{ $arena->arena_id }}" action="POST">
-                    @method('put')
-                    @csrf
+                <div class="container-2">
+                    <div class="text-container-2">
+                        <div class="d-flex mt-3 justify-content-center align-items-center" style="background-color: rgb(243, 210, 61)">
+                            <h3>Book Here !!</h3>
+                        </div>
+                    </div>
                     <div class="row">
-                        <input type="hidden" name = "arena_id" value="{{ $arena->arena_id }}">
-                        <div class="col-md-4 fw-bold" style="color: rgb(143, 0, 119);">
-                            <label>Choose your date and time!!</label>
-                            <div class="mt-1">
-                                <input class="form-control" type="date" name="booking_date">
+                        <div class="col">
+                            <form action="{{ route('finalizebooking',['id'=>$booking->id]) }}" method="POST" enctype="multipart/form-data">
+                                @method('put')
+                                @csrf
+                                <div class="row col-md-4 fw-bold mb-2" style="color: rgb(143, 0, 119);">
+                                    <label>Choose your date and time!!</label>
+                                    <div class="mt-1">
+                                        <input placeholder = "dd/mm/yyyy Example : 30/06/2023" class="form-control" type="text" name="booking_date" id="booking_time_start">
+                                    </div>
+                                </div>
+                                <div class="row col-md-4 fw-bold mb-2" style="color: rgb(143, 0, 119);">
+                                    <label>Choose the Start time!!</label>
+                                    <div class="mt-1">
+                                        <input placeholder = "HH:MM AM/PM Example 07:00 PM" class="form-control" type="text" name="booking_time_start" id="booking_time_start">
+                                    </div>
+                                </div>
+                                {{-- <div class="col-md-4 fw-bold" style="color: rgb(143, 0, 119);">
+                                    <label>Choose your date and time!!</label>
+                                    <div class="mt-1">
+                                        <input class="form-control @error('booking_date') is-invalid @enderror" type="date" name="booking_date" value ="{{ old('booking_date') }}">
+                                        @error('booking_date')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div clasPs="col-md-4 fw-bold" style="color: rgb(143, 0, 119);">
+                                    <label>Choose the Start time!!</label>
+                                    <div class="mt-1 time-icon">
+                                        <input type="time" class="form-control @error('booking_time_start') is-invalid @enderror" id="datetimepicker3" name="booking_time_start" value ="{{ old('booking_time_start') }}">
+                                        @error('booking_time_start')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div> --}}
+                                {{-- <div clasPs="col-md-4 fw-bold" style="color: rgb(143, 0, 119);">
+                                    <label>Choose the End time!!</label>
+                                    <div class="mt-1 time-icon">
+                                        <input type="time" class="form-control" id="datetimepicker3" name="time_end">
+                                    </div>
+                                </div> --}}
+                                <div class="row col-md-4 fw-bold" style="color: rgb(143, 0, 119);">
+                                    <label>How many hours do you want to book ?</label>
+                                    <div class="mt-1">
+                                        <input type="number" name="qty_time" required class="ml-3 form-control" value =1>
+                                    </div>
+                                </div>
+                                <div class="row-md-4 fw-bold">
+                                        <button class="button-link fw-bold" type ="submit" style="background-color: rgb(84, 199, 84)">Finalize Book</button>
+                                </div>
+                            </form>
+                            <div class="row-md-4 fw-bold mb-4">
+                                <form action="{{ route('deletebooking', ['id' => $booking->id]) }}" method = "POST">
+                                    @method('delete')
+                                    @csrf
+                                    <button class="button-link fw-bold" type ="submit" style="background-color: rgb(199, 84, 84)">Delete Book</button>
+                                </form>
                             </div>
+                                
                         </div>
-                        <div clasPs="col-md-4 fw-bold" style="color: rgb(143, 0, 119);">
-                            <label>Choose the Start time!!</label>
-                            <div class="mt-1 time-icon">
-                                <input type="time" class="form-control" id="datetimepicker3" name="booking_time_start">
-                            </div>
-                        </div>
-                        {{-- <div clasPs="col-md-4 fw-bold" style="color: rgb(143, 0, 119);">
-                            <label>Choose the End time!!</label>
-                            <div class="mt-1 time-icon">
-                                <input type="time" class="form-control" id="datetimepicker3" name="time_end">
-                            </div>
-                        </div> --}}
+                        
                     </div>
-                    <div class="col-md-4 fw-bold" style="color: rgb(143, 0, 119); margin-top: 20px;">
-                        <label class="form-label" for="qty_time">How many hours do you want to book ?</label>
-                        <input type="number" name="qty_time" class="form-control">
-                    </div>
-                    <button class="button-link fw-bold mb-5" type ="submit" style="background-color: rgb(84, 199, 84)">Finalized Book</button>
-                </form>
+                </div>
             </div>
         </div>
-        
-        @endforeach
     </div>
 </body>
 

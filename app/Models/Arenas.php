@@ -28,12 +28,12 @@ class Arenas extends Model
     public function category(){
         return $this->belongsTo(Category::class);
     }
-    
-    public function transaction(){
-        return $this->belongsTo(Transaction::class, 'user_id');
-    }
 
     public function booking(){
         return $this->hasMany(Booking::class);
+    }
+    
+    public function transaction(){
+        return $this->belongsTo(Transaction::class);
     }
 }

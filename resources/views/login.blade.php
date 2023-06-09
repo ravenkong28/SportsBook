@@ -56,6 +56,11 @@
                     {{ session('success') }}
                     <button type = "button" class="btn-close" data-bs-dismiss="alert" arta-label="Close"></button>
                 </div>
+            @elseif(session()->has('loginError'))
+                <div class="alert alert-danger alert-dismissible fade show" role = "alert">
+                    {{ session('loginError') }}
+                    <button type = "button" class="btn-close" data-bs-dismiss="alert" arta-label="Close"></button>
+                </div>
             @endif
 
             @if(session()->has('loginError'))

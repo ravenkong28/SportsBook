@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bookings', function (Blueprint $table) {
-            $table->id('booking_id');
-            // $table->foreignId('arena_id');
+        Schema::create('transactions', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('user_id');
-            $table->date('booking_date');
-            $table->boolean('status')->default(false);
-            // $table->time('booking_time_start');
+            $table->foreignId('arena_id');
+            $table->integer('arena_price');
+            $table->integer('qty_time');
+            $table->string('booking_date');
+            $table->string('booking_time_start');
             // $table->time('booking_time_end');
-            // $table->integer('qty_time');
             $table->integer('total_price');
             $table->timestamps();
         });
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bookings');
+        Schema::dropIfExists('transactions');
     }
 };

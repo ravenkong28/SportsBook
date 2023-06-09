@@ -35,7 +35,7 @@ Route::get('/register', [RegisterController::class, 'index'])->middleware('guest
 Route::post('/register', [RegisterController::class, 'store']);
 
 
-Route::get('/home',[ArenasController::class, 'top_arenas'])->middleware('auth');
+Route::get('/home',[ArenasController::class, 'top_arenas'])->name('home')->middleware('auth');
 
 Route::get('/category-arena/{id}',[ArenasController::class, 'arena_category'])->middleware('auth');
 
@@ -46,17 +46,11 @@ Route::get('/my-bookings',[BookingController::class, 'overview_bookings'])->midd
 Route::get('/my-account',[UserController::class, 'user_detail'])->middleware('auth');
 Route::get('/edit-profile',[UserController::class, 'update_profile'])->middleware('auth');
 
+route::post('/booking/{id}', [BookingController::class, 'addbooking'])->name ('addbooking');
 
-// Route::post('/bookings/{id}',[BookingController::class, 'store'])->name('bookings.store')->middleware('auth');
-// Route::get('/booking-form', [BookingController::class, 'form'])->middleware('auth');
-// Route::post('/booking-form/{id}', [BookingController::class, 'formstore'])->middleware('auth');
+Route::get('/my-bookings', [BookingController::class, 'showbooking'])->name('showbooking')->middleware('auth');
+Route::put('/my-bookings/{id}', [BookingController::class, 'finalizebooking'])->name('finalizebooking')->middleware('auth');
+Route::delete('/my-bookings/{id}', [BookingController::class, 'deletebooking'])->name('deletebooking')->middleware('auth');
 
-Route::get('/booking/{id}', [BookingController::class, 'index'])->middleware('auth');
-Route::post('/booking/{id}', [BookingController::class, 'pesan'])->middleware('auth');
-
-
-Route::get('/my-bookings', function(){
-    return view('bookings');
-})->middleware('auth');
-
-
+Route::get('/my-transaction', [BookingController::class, 'transaction'])->name('transaction')->middleware('auth');
+ 

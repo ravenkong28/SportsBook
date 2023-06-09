@@ -25,8 +25,12 @@
                                 <li class="list-group-item" style="margin-top: 20px;"><b>{{ $arena->arena_address }}</b></li>
                                 <li class="list-group-item" style="color: rgb(146, 0, 0)"><b>{{ $arena->arena_phone }}</b></li>
                                 <li class="list-group-item"><b>Rating: {{ $arena->arena_rating }}/5</b></li>
-                                <a href="/bookings/{{ $arena->arena_id }}" class="button-link fw-bold" style="background-color: rgb(84, 199, 84)">Book Now</a>
-                            <a href="/arena-detail/{{ $arena->arena_id }}" class="button-link fw-bold" style="margin-left: 20px;">Detail</a>
+                                <form action="{{ route('addbooking',['id'=>$arena->arena_id]) }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" value ="1" name = "qty_time">
+                                    <input type="submit" value ="Book now" class="button-link fw-bold" style="background-color: rgb(84, 199, 84)">
+                                </form>
+                                <a href="/arena-detail/{{ $arena->arena_id }}" class="button-link fw-bold" style="margin-left: 20px;">Detail</a>
                             </ul>
                         </div>
                   </div>

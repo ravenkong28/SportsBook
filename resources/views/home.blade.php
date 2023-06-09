@@ -76,6 +76,13 @@
         </div>
     @endif
 
+    @if(session()->has('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('error') }}
+            <button type = "button" class="btn-close" data-bs-dismiss="alert" arta-label="Close"></button>
+        </div>
+    @endif
+
     <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -153,7 +160,11 @@
                                     <input type="hidden" name = "arena_id" value="{{ $arena->arena_id }}">
                                     <button class="button-link fw-bold" style="background-color: rgb(84, 199, 84)">Book Now</button>
                                 </form>  --}}
-                                <a href="/booking/{{ $arena->arena_id }}" class="button-link fw-bold" style="background-color: rgb(84, 199, 84)">Book Now</a>
+                            <form action="{{ route('addbooking',['id'=>$arena->arena_id]) }}" method="POST">
+                                @csrf
+                                <input type="hidden" value ="1" name = "qty_time">
+                                <input type="submit" value ="Book now" class="button-link fw-bold" style="background-color: rgb(84, 199, 84)">
+                            </form>
                                 <a href="/arena-detail/{{ $arena->arena_id }}" class="button-link fw-bold">Detail</a>
                             {{-- @endcan --}}
                             

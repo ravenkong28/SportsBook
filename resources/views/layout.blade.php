@@ -33,6 +33,9 @@
                     <li class="nav-item">
                         <a class="nav-link fw-bold fs-5" style="color:rgb(207, 100, 0); margin-right: 30px;"  href="/my-bookings">My Bookings</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold fs-5" style="color:rgb(207, 100, 0); margin-right: 30px;"  href="/my-transaction">My Transaction</a>
+                    </li>
                 </ul>
                 <div class="d-flex">
                     <form action="/home" class="me-2 d-flex align-items-center" role="search">
