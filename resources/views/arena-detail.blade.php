@@ -68,7 +68,7 @@
                         <li class="list-group-item"><b>Rating: {{ $arena->arena_rating }}/5</b></li>
                         <form action="{{ route('addbooking',['id'=>$arena->arena_id]) }}" method="POST">
                             @csrf
-                            <input type="hidden" value ="1" name = "qty_time">
+                            {{-- <input type="hidden" value ="1" name = "qty_time"> --}}
                             <input type="submit" value ="Book now" class="button-link fw-bold" style="background-color: rgb(84, 199, 84)">
                         </form> 
                     </ul>

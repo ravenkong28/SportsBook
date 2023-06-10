@@ -33,6 +33,17 @@
 </style>
 
 <body>
+    @if(session()->has('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type = "button" class="btn-close" data-bs-dismiss="alert" arta-label="Close"></button>
+        </div>
+    @elseif(session()->has('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('error') }}
+            <button type = "button" class="btn-close" data-bs-dismiss="alert" arta-label="Close"></button>
+        </div>
+    @endif
     <div class= "p-3">
         <div class="row justify-content-left align-items-left" style="padding: 20px; border-radius: 20px 20px;">
             <div class="card border-dark mb-3" style="width: 100%; height: auto">
@@ -63,7 +74,7 @@
                             <form action="{{ route('finalizebooking',['id'=>$booking->id]) }}" method="POST" enctype="multipart/form-data">
                                 @method('put')
                                 @csrf
-                                <div class="row col-md-4 fw-bold mb-2" style="color: rgb(143, 0, 119);">
+                                {{-- <div class="row col-md-4 fw-bold mb-2" style="color: rgb(143, 0, 119);">
                                     <label>Choose your date and time!!</label>
                                     <div class="mt-1">
                                         <input placeholder = "dd/mm/yyyy Example : 30/06/2023" class="form-control" type="text" name="booking_date" id="booking_time_start">
@@ -74,9 +85,9 @@
                                     <div class="mt-1">
                                         <input placeholder = "HH:MM AM/PM Example 07:00 PM" class="form-control" type="text" name="booking_time_start" id="booking_time_start">
                                     </div>
-                                </div>
-                                {{-- <div class="col-md-4 fw-bold" style="color: rgb(143, 0, 119);">
-                                    <label>Choose your date and time!!</label>
+                                </div> --}}
+                                <div class="col-md-4 fw-bold" style="color: rgb(143, 0, 119);">
+                                    <label>Choose your start date and time!!</label>
                                     <div class="mt-1">
                                         <input class="form-control @error('booking_date') is-invalid @enderror" type="date" name="booking_date" value ="{{ old('booking_date') }}">
                                         @error('booking_date')
@@ -96,17 +107,16 @@
                                             </div>
                                         @enderror
                                     </div>
-                                </div> --}}
-                                {{-- <div clasPs="col-md-4 fw-bold" style="color: rgb(143, 0, 119);">
+                                </div>
+                                <div clasPs="col-md-4 fw-bold" style="color: rgb(143, 0, 119);">
                                     <label>Choose the End time!!</label>
                                     <div class="mt-1 time-icon">
-                                        <input type="time" class="form-control" id="datetimepicker3" name="time_end">
-                                    </div>
-                                </div> --}}
-                                <div class="row col-md-4 fw-bold" style="color: rgb(143, 0, 119);">
-                                    <label>How many hours do you want to book ?</label>
-                                    <div class="mt-1">
-                                        <input type="number" name="qty_time" required class="ml-3 form-control" value =1>
+                                        <input type="time" class="form-control @error('booking_time_end') is-invalid @enderror" id="datetimepicker3" name="booking_time_end" value ="{{ old('booking_time_end') }}">
+                                        @error('booking_time_end')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="row-md-4 fw-bold">

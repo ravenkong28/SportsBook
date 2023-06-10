@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->foreignId('arena_id');
             $table->integer('arena_price');
-            $table->string('qty_time');
+            // $table->string('qty_time');
             $table->timestamps();
         });
     }

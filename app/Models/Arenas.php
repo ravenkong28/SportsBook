@@ -36,4 +36,8 @@ class Arenas extends Model
     public function transaction(){
         return $this->belongsTo(Transaction::class);
     }
+
+    public function arena_booked(){
+        return $this->belongsTo(Arena_booked::class);
+    }
 }

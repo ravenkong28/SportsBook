@@ -60,6 +60,7 @@
                                         <li class="list-group-item"><b>Price per hour: Rp. {{ $transaction->arena->arena_price }}</b></li>
                                         <li class="list-group-item"><b>Start Date: {{ $transaction->booking_date }}</b></li>
                                         <li class="list-group-item"><b>Start Time: {{ $transaction->booking_time_start }}</b></li>
+                                        <li class="list-group-item"><b>End Time: {{ $transaction->booking_time_end }}</b></li>
                                         <li class="list-group-item"><b>Duration: {{ $transaction->qty_time }}Hour(s)</b></li>
                                         <br>
                                         <h5 class="list-group-item"><b>Total Price: Rp. {{ $transaction->total_price }}</b></h5>
@@ -97,7 +98,12 @@
                                         <li class="list-group-item"><b>Price per hour: Rp. {{ $transaction->arena->arena_price }}</b></li>
                                         <li class="list-group-item"><b>Start Date: {{ $transaction->booking_date }}</b></li>
                                         <li class="list-group-item"><b>Start Time: {{ $transaction->booking_time_start }}</b></li>
-                                        <li class="list-group-item"><b>Duration: {{ $transaction->qty_time }}Hour(s)</b></li>
+                                        <li class="list-group-item"><b>End Time: {{ $transaction->booking_time_end }}</b></li>
+                                        @if ($transaction->qty_time > 1)
+                                            <li class="list-group-item"><b>Duration: {{ $transaction->qty_time }} Hour(s)</b></li>
+                                        @else
+                                            <li class="list-group-item"><b>Duration: {{ $transaction->qty_time }} Hour</b></li>
+                                        @endif
                                         <br>
                                         <h5 class="list-group-item"><b>Total Price: Rp. {{ $transaction->total_price }}</b></h5>
                                         <div class="fw-bold mb-4 ">

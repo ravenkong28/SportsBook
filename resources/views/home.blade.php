@@ -97,10 +97,12 @@
                         <div class="carousel-caption text-start">
                             <li class="list-group-item fw-bold"><b>{{ $arenas[0]->arena_type }}</b></li>
                             <li class="list-group-item "><b>{{ $arenas[0]->arena_name }}</b></li>
-                            <h4>Weekdays 09.00 - 22.00</h4>
-                            <h4>Weekends 08.00 - 21.00</h4>
-                            <h4>Special Price!! <h4 class = text-danger>Rp200.000 -> Rp140.000</h4></h4>
-                            <p><a class="btn btn-lg btn-primary" href="#">Book Now!!</a></p>
+                            <h4>Everyday 09.00 - 22.00</h4>
+                            <h4>Special Price!! <h4 class = text-danger>Rp. {{ $arenas[0]->arena_price + 30000 }} -> Rp.{{ $arenas[0]->arena_price }} per Hour</h4></h4>
+                            <form action="{{ route('addbooking',['id'=>$arenas[0]->arena_id]) }}" method="POST">
+                                @csrf
+                                <input type="submit" value ="Book now!!" class="button btn-lg btn-primary fw-bold fs-3" style="background-color: rgb(84, 103, 199)">
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -111,10 +113,12 @@
                             <div class="carousel-caption text-start">
                                 <li class="list-group-item fw-bold"><b>{{ $arena->arena_type }}</b></li>
                                 <li class="list-group-item "><b>{{ $arena->arena_name }}</b></li>
-                                <h4>Weekdays 09.00 - 22.00</h4>
-                                <h4>Weekends 08.00 - 21.00</h4>
-                                <h4>Special Price!! <h4 class = text-danger>Rp200.000 -> Rp140.000</h4></h4>
-                                <p><a class="btn btn-lg btn-primary" href="#">Book Now!!</a></p>
+                                <h4>Everyday 09.00 - 22.00</h4>
+                                <h4>Special Price!! <h4 class = text-danger>Rp. {{ $arena->arena_price + 30000 }} -> Rp.{{ $arena->arena_price }} per Hour</h4></h4>
+                                <form action="{{ route('addbooking',['id'=>$arena->arena_id]) }}" method="POST">
+                                    @csrf
+                                    <input type="submit" value ="Book now!!" class="button btn-lg btn-primary fw-bold fs-3" style="background-color: rgb(84, 103, 199)">
+                                </form>
                             </div>
                         </div>
                     </div>    
@@ -162,7 +166,7 @@
                                 </form>  --}}
                             <form action="{{ route('addbooking',['id'=>$arena->arena_id]) }}" method="POST">
                                 @csrf
-                                <input type="hidden" value ="1" name = "qty_time">
+                                {{-- <input type="hidden" value ="1" name = "qty_time"> --}}
                                 <input type="submit" value ="Book now" class="button-link fw-bold" style="background-color: rgb(84, 199, 84)">
                             </form>
                                 <a href="/arena-detail/{{ $arena->arena_id }}" class="button-link fw-bold">Detail</a>

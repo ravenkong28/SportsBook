@@ -17,10 +17,10 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->foreignId('arena_id');
             $table->integer('arena_price');
+            $table->date('booking_date');
+            $table->time('booking_time_start');
+            $table->time('booking_time_end');
             $table->integer('qty_time');
-            $table->string('booking_date');
-            $table->string('booking_time_start');
-            // $table->time('booking_time_end');
             $table->integer('total_price');
             $table->boolean('status_payment')->default(0);
             $table->timestamps();

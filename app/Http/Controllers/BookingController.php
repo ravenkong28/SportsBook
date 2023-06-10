@@ -6,8 +6,11 @@ use Illuminate\Http\Request;
 use App\Models\Booking;
 use App\Models\Arenas;
 use App\Models\Transaction;
+use App\Rules\DateBetween;
+use App\Rules\TimeBetween;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
 
 class BookingController extends Controller
 {   
@@ -25,17 +28,17 @@ class BookingController extends Controller
             $booking->user_id = $user->id;
             $booking->arena_id = $arena->arena_id;
             $booking->arena_price = $arena->arena_price;
-            $booking->qty_time = $request->qty_time;
+            // $booking->qty_time = $request->qty_time;
 
             if((Booking::where('user_id', $user->id)->count()) >=1){
                 return redirect('home')->with('error', 'You need to confirm / delete your previous bookings');
             }
             $booking->save();
 
-            return redirect('home')->with('success', 'Your orders has been book!');
+            return redirect('/my-bookings')->with('success', 'Your orders has been book!');
         }
         else{
-            return redirect('login')->with('loginError', 'Your orders has been book!');
+            return redirect('login')->with('loginError', 'You need to login first!');
         }
     }
 
@@ -64,25 +67,45 @@ class BookingController extends Controller
         // @dd($id);
         $booking = Booking::find($id)->first();
         if($booking){
-            $validateData['booking_date'] = $request->booking_date;
-            $validateData['booking_time_start'] = $request->booking_time_start;
-            $validateData['qty_time'] = $request->qty_time;
+            $validateData = $request->validate([
+                'booking_date' => [new DateBetween],
+                'booking_time_start' => [new TimeBetween],
+                'booking_time_end' => [new TimeBetween],
+            ]);
+            $date = Carbon::parse($request->booking_date)->toDateString();
+            // dd($date);
+            $start = Carbon::parse($request->booking_time_start);
+            $finish = Carbon::parse($request->booking_time_end);
+            $user = $booking->user_id;
+            $arena_id = $booking->arena_id;
             
+            $qty_time = round($start->diffInMinutes($finish)/60);
+            
+            $transactions = Transaction::all();
+            foreach($transactions as $transaction){
+                if($transaction['arena_id'] == $arena_id){
+                    if($transaction['booking_date'] == $date){
+                        if($start->between($transaction['booking_time_start'],$transaction['booking_time_end']) 
+                        || $finish->between($transaction['booking_time_start'],$transaction['booking_time_end'])){
+                            return redirect()->back()->with('error', 'Your Booking Time Has Already Booked by Others !');
+                        }
+                    }
+                }
+            }
+
+
             // dd($validateData);
-            $validateData['user_id'] = $booking->user_id;
-            $validateData['arena_id'] = $booking->arena_id;
+            $validateData['qty_time'] = $qty_time;
+            $validateData['user_id'] = $user;
+            $validateData['arena_id'] = $arena_id;
             $validateData['arena_price'] = $booking->arena_price;
             $arena = Arenas::where('arena_id', $booking->arena_id)->first();
-            // dd($arena);
-            $validateData['total_price'] = $arena->arena_price * $request->qty_time;
-            // $validateData['id'] = Str::uuid('32')->toString();
+            $validateData['total_price'] = $arena->arena_price * $qty_time;
             
-            // dd($validateData);
-
             Transaction::create($validateData);
             Booking::destroy($id);
 
-            return redirect('/home')->with('success', 'Your Booking Transaction Success Confirmed !!');
+            return redirect('/my-transaction')->with('success', 'Your Booking Transaction Success Confirmed !!');
         }
 
         // dd($booking);        
