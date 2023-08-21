@@ -14,13 +14,14 @@ return new class extends Migration
         Schema::create('arenas', function (Blueprint $table) {
             $table->id('arena_id');
             $table->foreignId('category_id');
-            $table->string('arena_type');
+            $table->string('store_name');
             $table->string('arena_name');
             $table->string('arena_address');
             $table->string('arena_phone');
-            $table->float('arena_rating');
+            $table->float('arena_rating')->default(3);
             $table->integer('number_of_fields')->default(1);
             $table->integer('arena_price');
+            $table->string('arena_image')->nullable();
             $table->integer('banner_flag')->default(0);
             $table->integer('top_arenas_flag')->default(0);
             $table->timestamps();

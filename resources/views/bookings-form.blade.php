@@ -49,12 +49,12 @@
             <div class="card border-dark mb-3" style="width: 100%; height: auto">
                 <div class="row g-0 justify-content-center align-items-center">
                 <div class="col-md-4">
-                    <img class="img-fluid rounded-start justify-content-center align-items-center" style="width: 100%; height: 180px;" src="{{ asset('Images/'.$arena->arena_name.' '.$arena->arena_type.'.jpg') }}">
+                    <img class="img-fluid rounded-start justify-content-center align-items-center" style="width: 100%; height: 180px;" src="{{ asset('Images/'.$arena->arena_name.' '.$arena->category->category_name.'.jpg') }}">
                 </div>
                 <div class="col-md-8">
                         <div class="card-body">
                             <ul style="list-style: none;">
-                                <li class="list-group-item; fs-2"><b>{{ $arena->arena_name }} {{ $arena->arena_type }}</b></li>
+                                <li class="list-group-item; fs-2"><b>{{ $arena->arena_name }} {{ $arena->category->category_name }}</b></li>
                                 <li class="list-group-item" style="margin-top: 20px;"><b>{{ $arena->arena_address }}</b></li>
                                 <li class="list-group-item" style="color: rgb(146, 0, 0)"><b>{{ $arena->arena_phone }}</b></li>
                                 <li class="list-group-item"><b>Rating: {{ $arena->arena_rating }}/5</b></li>
@@ -120,7 +120,7 @@
                                     </div>
                                 </div>
                                 <div class="row-md-4 fw-bold">
-                                        <button class="button-link fw-bold" type ="submit" style="background-color: rgb(84, 199, 84)">Finalize Book</button>
+                                    <button class="button-link fw-bold" type ="submit" style="background-color: rgb(84, 199, 84)">Finalize Book</button>
                                 </div>
                             </form>
                             <div class="row-md-4 fw-bold mb-4">

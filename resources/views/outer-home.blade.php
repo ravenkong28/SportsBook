@@ -28,8 +28,8 @@
         }
 
         .img-container img {
-            width: 250%;
-            height: 250%;
+            width: 150%;
+            height: 150%;
             object-fit: contain;
         }
 
@@ -51,7 +51,7 @@
     <div class="container">
         <div class="img-container">
             <img src="{{ asset('Images/home.png') }}">
-            <div class="text-overlay justify-content-center align-items-center fw-bold fs-1" style="color: black">
+            <div class="text-overlay text-white justify-content-center align-items-center fw-bold fs-1" style="color: black">
                 Welcome to SportsBook!!
             </div>
         </div>

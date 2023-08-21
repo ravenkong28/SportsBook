@@ -11,60 +11,149 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary" style="padding: 20px;">
-        <div class="container-fluid" style="background-color: rgb(255, 238, 144);">
-          <a class="navbar-brand fw-bold fs-1" style="color: rgb(207, 100, 0); margin-left: 30px;" href="/home">SportsBook</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="navbar" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <ul class="nav">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle fw-bold fs-5" style="color:rgb(207, 100, 0); margin-right: 30px;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Arenas</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item fw-bold" style="color:rgb(207, 100, 0)" href="/category-arena/{{ $categories=1 }}">Badminton</a></li>
-                                <li><a class="dropdown-item fw-bold" style="color:rgb(207, 100, 0)" href="/category-arena/{{ $categories=2 }}">Futsal</a></li>
-                                <li><a class="dropdown-item fw-bold" style="color:rgb(207, 100, 0)" href="/category-arena/{{ $categories=3 }}">Basketball</a></li>
-                            </ul>
+
+<style>
+    .search-container{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .search-form{
+        display:flex;
+        align-items:center;
+
+    }
+
+    .search-input{
+        padding:10px;
+        border: 1px solid #ccc;
+        border-radius : 4x;
+        font-size: 16px;
+        color: #555l
+        outline:none;
+        width:200px
+    }
+
+    .search-button{
+        padding: 10px 20px;
+        background-color: #cc9e1e;
+        color: #fff;
+        border:none;
+        border-radius:4x;
+        font-size:16px;
+        cursor:pointer;
+        transition:background-color 0.3s ease;
+
+    }
+</style>
+
+@can('admin')
+    <body>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary" style="padding: 20px;">
+            <div class="container-fluid" style="background-color: rgb(255, 238, 144);">
+            <a class="navbar-brand fw-bold fs-1" style="color: rgb(207, 100, 0); margin-left: 30px;" href="/home">SportsBook</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link fw-bold fs-5" style="color:rgb(207, 100, 0); margin-right: 30px;"  href="/home/my-arenas">My Arenas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-bold fs-5" style="color:rgb(207, 100, 0); margin-right: 30px;"  href="/home/my-admin-store">My Admin Store</a>
                         </li>
                     </ul>
-                    <li class="nav-item">
-                        <a class="nav-link fw-bold fs-5" style="color:rgb(207, 100, 0); margin-right: 30px;"  href="/my-bookings">My Bookings</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link fw-bold fs-5" style="color:rgb(207, 100, 0); margin-right: 30px;"  href="/my-transaction">My Transaction</a>
-                    </li>
-                </ul>
-                <div class="d-flex">
-                    <form action="/home" class="me-2 d-flex align-items-center" role="search">
-                        <input class="form-control me-2" type="text" placeholder="Search" name="Search">
-                        <button class="btn btn-outline-success fw-bold" style="background-color: rgb(255, 153, 0); color: black" type="submit">Search</button>
-                    </form>
-                    <ul class="nav">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle fw-bold fs-5" style="color: black; align-items: center;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Profile</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item fw-bold" href="/my-account">My Account</a></li>
-                                <form action="/logout" method="post">
-                                    @csrf
-                                    <button type ="submit" class="dropdown-item fw-bold">Log Out</button>
-                                </form>
-                            </ul>
-                        </li>
-                    </ul>
+                    <div class="d-flex">
+                        {{-- <form action="/category-arena/{id}" method = "get" class="me-2 d-flex align-items-center" role="search">
+                            <input class="search-input" type="text" placeholder="Search..." name="query">
+                            <button class="search-button fw-bold" style="background-color: rgb(255, 153, 0); color: black" type="submit">Search</button>
+                        </form> --}}
+                        <ul class="nav">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle fw-bold fs-5" style="color: black; align-items: center;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Profile</a>
+                                <ul class="dropdown-menu">
+                                    <form action="/logout" method="post">
+                                        @csrf
+                                        <button type ="submit" class="dropdown-item fw-bold">Log Out</button>
+                                    </form>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
+        </nav>
+        @yield('context')
+    </body>
+    <footer>
+        <div class="footer">
+            <div class = "" style = "background-color: rgb(36, 33, 32); display: flex; align-items: center; justify-content: center; position: fixed; bottom: 0; width: 100%; height: 40px;">
+                <h6 style="color: rgb(255, 255, 255)">@2023 Copyright SportsBook | Customer Service: 021 1234 5678 | Email: sportsbook@gmail.com</h6>
+            </div>
         </div>
-      </nav>
-      @yield('context')
-</body>
-<footer>
-    <div class="footer">
-        <div class = "" style = "background-color: rgb(36, 33, 32); display: flex; align-items: center; justify-content: center; position: fixed; bottom: 0; width: 100%; height: 40px;">
-            <h6 style="color: rgb(255, 255, 255)">@2023 Copyright SportsBook | Customer Service: 021 1234 5678 | Email: sportsbook@gmail.com</h6>
+    </footer>
+
+@else
+
+    <body>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary" style="padding: 20px;">
+            <div class="container-fluid" style="background-color: rgb(255, 238, 144);">
+            <a class="navbar-brand fw-bold fs-1" style="color: rgb(207, 100, 0); margin-left: 30px;" href="/home">SportsBook</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <ul class="nav">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle fw-bold fs-5" style="color:rgb(207, 100, 0); margin-right: 30px;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Arenas</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item fw-bold" style="color:rgb(207, 100, 0)" href="/category-arena/{{ $categories=1 }}">Badminton</a></li>
+                                    <li><a class="dropdown-item fw-bold" style="color:rgb(207, 100, 0)" href="/category-arena/{{ $categories=2 }}">Futsal</a></li>
+                                    <li><a class="dropdown-item fw-bold" style="color:rgb(207, 100, 0)" href="/category-arena/{{ $categories=3 }}">Basketball</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <li class="nav-item">
+                            <a class="nav-link fw-bold fs-5" style="color:rgb(207, 100, 0); margin-right: 30px;"  href="/my-bookings">My Bookings</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fw-bold fs-5" style="color:rgb(207, 100, 0); margin-right: 30px;"  href="/my-transaction">My Transaction</a>
+                        </li>
+                    </ul>
+                    <div class="d-flex">
+                        <form action="/category-arena/{id}" method = "get" class="me-2 d-flex align-items-center" role="search">
+                            <input class="search-input" type="text" placeholder="Search..." name="query">
+                            <button class="search-button fw-bold" style="background-color: rgb(255, 153, 0); color: black" type="submit">Search</button>
+                        </form>
+                        <ul class="nav">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle fw-bold fs-5" style="color: black; align-items: center;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Profile</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item fw-bold" href="/my-account">My Account</a></li>
+                                    <form action="/logout" method="post">
+                                        @csrf
+                                        <button type ="submit" class="dropdown-item fw-bold">Log Out</button>
+                                    </form>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        @yield('context')
+    </body>
+    <footer>
+        <div class="footer">
+            <div class = "" style = "background-color: rgb(36, 33, 32); display: flex; align-items: center; justify-content: center; position: fixed; bottom: 0; width: 100%; height: 40px;">
+                <h6 style="color: rgb(255, 255, 255)">@2023 Copyright SportsBook | Customer Service: 021 1234 5678 | Email: sportsbook@gmail.com</h6>
+            </div>
         </div>
-    </div>
-</footer>
+    </footer>
+
+@endcan
+    
 </html>

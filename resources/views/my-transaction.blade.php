@@ -48,12 +48,13 @@
                         <div class="card mb-3" style="width: 100%; height: auto">
                             <div class="row g-0 justify-content-center align-items-center">
                             <div class="col-md-4">
-                                <img class="img-fluid rounded-start justify-content-center align-items-center" style="width: 100%; height: 300px;" src="{{ asset('Images/'.$transaction->arena->arena_name.' '.$transaction->arena->arena_type.'.jpg') }}">
+                                <img class="img-fluid rounded-start justify-content-center align-items-center" style="width: 100%; height: 300px;" src="{{ asset('Images/'.$transaction->arena->arena_name.' '.$transaction->arena->category->category_name.'.jpg') }}">
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
                                     <ul style="list-style: none;">
-                                        <li class="list-group-item; fs-2"><b>{{ $transaction->arena->arena_name }} {{ $transaction->arena->arena_type }}</b></li>
+                                        <li class="list-group-item; fs-2"><b>{{ $transaction->arena->arena_name }} {{ $transaction->arena->category->category_name }}</b></li>
+                                        <li class="list-group-item;"><b>Store Name : {{ $transaction->arena->store_name }}</b></li>
                                         <li class="list-group-item" style="margin-top: 20px;"><b>{{ $transaction->arena->arena_address }}</b></li>
                                         <li class="list-group-item" style="color: rgb(146, 0, 0)"><b>{{ $transaction->arena->arena_phone }}</b></li>
                                         <li class="list-group-item"><b>Rating: {{ $transaction->arena->arena_rating }}/5</b></li>
@@ -86,12 +87,13 @@
                         <div class="card mb-3" style="width: 100%; height: auto">
                             <div class="row g-0 justify-content-center align-items-center">
                             <div class="col-md-4">
-                                <img class="img-fluid rounded-start justify-content-center align-items-center" style="width: 100%; height: 300px;" src="{{ asset('Images/'.$transaction->arena->arena_name.' '.$transaction->arena->arena_type.'.jpg') }}">
+                                <img class="img-fluid rounded-start justify-content-center align-items-center" style="width: 100%; height: 300px;" src="{{ asset('Images/'.$transaction->arena->arena_name.' '.$transaction->arena->category->category_name.'.jpg') }}">
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
                                     <ul style="list-style: none;">
-                                        <li class="list-group-item; fs-2"><b>{{ $transaction->arena->arena_name }} {{ $transaction->arena->arena_type }}</b></li>
+                                        <li class="list-group-item; fs-2"><b>{{ $transaction->arena->arena_name }} {{ $transaction->arena->category->category_name }}</b></li>
+                                        <li class="list-group-item;"><b>Store Name : {{ $transaction->arena->store_name }}</b></li>
                                         <li class="list-group-item" style="margin-top: 20px;"><b>{{ $transaction->arena->arena_address }}</b></li>
                                         <li class="list-group-item" style="color: rgb(146, 0, 0)"><b>{{ $transaction->arena->arena_phone }}</b></li>
                                         <li class="list-group-item"><b>Rating: {{ $transaction->arena->arena_rating }}/5</b></li>

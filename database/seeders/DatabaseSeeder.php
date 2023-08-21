@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
         // ]);
         
         Arenas::insert([
-            'arena_type'=> 'Badminton',
+            'store_name' => 'Arena Admin',
             'arena_name'=> 'Patra',
             'arena_address'=> 'Jl. Haji Musirin',
             'arena_phone'=> '0812 3456 7890',
@@ -44,7 +44,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Arenas::insert([
-            'arena_type'=> 'Futsal',
+            'store_name' => 'Arena Admin',
             'arena_name'=> 'Orion',
             'arena_address'=> 'Jl. Kebon Jeruk no.10',
             'arena_phone'=> '0812 3456 7890',
@@ -56,7 +56,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Arenas::insert([
-            'arena_type'=> 'Futsal',
+            'store_name' => 'Arena Admin 2',
             'arena_name'=> 'Cometa',
             'arena_address'=> 'Jl. Hadiah blok A',
             'arena_phone'=> '0812 3456 7890',
@@ -68,7 +68,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Arenas::insert([
-            'arena_type'=> 'Futsal',
+            'store_name' => 'Arena Admin',
             'arena_name'=> 'Lapangan',
             'arena_address'=> 'Jl. Hadiah blok A',
             'arena_phone'=> '0812 3456 7890',
@@ -80,7 +80,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Arenas::insert([
-            'arena_type'=> 'Badminton',
+            'store_name' => 'Arena Admin 2',
             'arena_name'=> 'Dutamas',
             'arena_address'=> 'Jl. A',
             'arena_phone'=> '0812 3456 7890',
@@ -92,7 +92,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Arenas::insert([
-            'arena_type'=> 'Badminton',
+            'store_name' => 'Arena Admin',
             'arena_name'=> 'Talenta',
             'arena_address'=> 'Jl. B',
             'arena_phone'=> '0812 3456 7890',
@@ -104,7 +104,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Arenas::insert([
-            'arena_type'=> 'Badminton',
+            'store_name' => 'Arena Admin 2',
             'arena_name'=> 'Garuda Badminton Hall',
             'arena_address'=> 'Jl. C',
             'arena_phone'=> '0812 3456 7890',
@@ -116,7 +116,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Arenas::insert([
-            'arena_type'=> 'Badminton',
+            'store_name' => 'Arena Admin',
             'arena_name'=> 'Tunas Bugar',
             'arena_address'=> 'Jl. D',
             'arena_phone'=> '0812 3456 7890',
@@ -164,6 +164,29 @@ class DatabaseSeeder extends Seeder
             'address' => 'Jl. Laravel no 8',
             'region' => 'Jakarta',
             'is_admin' => 1,
+            'store_name' => 'Arena Admin'
+        ]);
+        User::insert([
+            'name' => 'Admin 2',
+            'email'=> 'admin2@gmail.com',
+            'password'=> bcrypt('admin123'),
+            'phone'=> '0822-4466-8800',
+            'age' => '30',
+            'address' => 'Jl. Laravel no 80',
+            'region' => 'Bandung',
+            'is_admin' => 1,
+            'store_name' => 'Arena Admin 2'
+        ]);
+        User::insert([
+            'name' => 'Admin 3',
+            'email'=> 'admin3@gmail.com',
+            'password'=> bcrypt('admin123'),
+            'phone'=> '0822-4466-8800',
+            'age' => '30',
+            'address' => 'Jl. Laravel no 80',
+            'region' => 'Bandung',
+            'is_admin' => 1,
+            'store_name' => 'Arena Admin'
         ]);
     }
 }
